@@ -568,6 +568,9 @@ module Pod
       if consumer.platform_name == :ios && use_frameworks
         minimum = Version.new('13.0')
         deployment_target = [Version.new(deployment_target), minimum].max.to_s
+      elsif platform_name == :osx && build_type.framework?
+        minimum = Version.new('10.13')
+        deployment_target = [Version.new(deployment_target), minimum].max.to_s
       end
       deployment_target
     end
